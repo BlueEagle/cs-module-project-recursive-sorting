@@ -5,6 +5,7 @@ def merge(arrA, arrB):
 
     a = 0
     b = 0
+    k = 0
 
     # Your code here
     # print("Arrays:", arrA, arrB)
@@ -52,17 +53,17 @@ def merge(arrA, arrB):
     #     merged_arr[i] = arrA[0]
     #     del arrA[0]
 
-    for i in range(len(merged_arr)-1):
-        print(arrA, arrB)
-        if not arrA:
-            merged_arr[i] = arrB.pop(0)
-        elif not arrB:
-            merged_arr[i] = arrA.pop(0)
-        elif arrA[0] < arrB[0]:
-            merged_arr[i] = arrA.pop(0)
-        else:
-            merged_arr[i] = arrB.pop(0)
-        print(merged_arr)
+    # for i in range(len(merged_arr)-1):
+    #     print(arrA, arrB)
+    #     if not arrA:
+    #         merged_arr[i] = arrB.pop(0)
+    #     elif not arrB:
+    #         merged_arr[i] = arrA.pop(0)
+    #     elif arrA[0] < arrB[0]:
+    #         merged_arr[i] = arrA.pop(0)
+    #     else:
+    #         merged_arr[i] = arrB.pop(0)
+    #     print(merged_arr)
 
     """
     move through each element of merged_arr
@@ -70,8 +71,22 @@ def merge(arrA, arrB):
         add the selected element in arrA to merged_arr
         increment the pointer for arrA
     """
-    # while a <= len(arrA) and b <= len(arrB):
-    #     if arrA[a] <= arrB[b]:
+    while a < len(arrA) and b < len(arrB):
+        if arrA[a] < arrB[b]:
+            merged_arr[k] = arrA[a]
+            a += 1
+        else:
+            merged_arr[k] = arrB[b]
+            b += 1
+        k += 1
+    while a < len(arrA):
+        merged_arr[k] = arrA[a]
+        a += 1
+        k += 1
+    while b < len(arrB):
+        merged_arr[k] = arrB[b]
+        b += 1
+        k += 1
 
     return merged_arr
 
@@ -81,11 +96,15 @@ def merge(arrA, arrB):
 def merge_sort(arr):
     # Your code here
     if (len(arr) == 1):
+        print("SINGLE:", arr)
         return arr
 
-    midIndex = int(len(arr)/2)
-    arr1 = arr[0:midIndex]
-    arr2 = arr[midIndex:len(arr)]
+    midIndex = len(arr) // 2
+    print("Start:", 0, "End:", len(arr), "Last Element:", arr[len(arr)-1])
+    print("Middle Index: ", midIndex)
+    arr1 = arr[:midIndex]
+    arr2 = arr[midIndex:]
+    print(arr1, arr2)
 
     arr1 = merge_sort(arr1)
     arr2 = merge_sort(arr2)
