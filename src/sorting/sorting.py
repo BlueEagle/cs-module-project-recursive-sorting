@@ -95,21 +95,18 @@ def merge(arrA, arrB):
 
 def merge_sort(arr):
     # Your code here
-    if (len(arr) == 1):
-        print("SINGLE:", arr)
+    if (len(arr) <= 1):  # this is returned if the length is 1
         return arr
 
     midIndex = len(arr) // 2
-    print("Start:", 0, "End:", len(arr), "Last Element:", arr[len(arr)-1])
-    print("Middle Index: ", midIndex)
+
     arr1 = arr[:midIndex]
     arr2 = arr[midIndex:]
-    print(arr1, arr2)
 
     arr1 = merge_sort(arr1)
     arr2 = merge_sort(arr2)
 
-    return merge(arr1, arr2)
+    return merge(arr1, arr2)  # this is returned in any other case.
 
 # # STRETCH: implement the recursive logic for merge sort in a way that doesn't
 # # utilize any extra memory
